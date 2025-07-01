@@ -31,10 +31,10 @@ const processJobMatching = async (job) => {
       }
 
       // 3. Salary match (check for overlap)
-      if (candidate.salary_min && jobToMatch.salary_max && candidate.salary_min <= jobToMatch.salary_max) {
-        score++;
-      }
-      if (candidate.salary_max && jobToMatch.salary_min && candidate.salary_max >= jobToMatch.salary_min) {
+      // 3. Salary match (check for overlap)
+      // A salary match contributes 1 point if the candidate's desired range overlaps with the job's offered range.
+      if ((candidate.salary_min && jobToMatch.salary_max && candidate.salary_min <= jobToMatch.salary_max) ||
+          (candidate.salary_max && jobToMatch.salary_min && candidate.salary_max >= jobToMatch.salary_min)) {
         score++;
       }
 
